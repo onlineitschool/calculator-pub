@@ -27,3 +27,5 @@ git commit -m "Masha added calculator"
 git push
 
 git pull
+
+which git 
