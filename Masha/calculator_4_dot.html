@@ -31,6 +31,11 @@ let on_screen = 0;
 let in_memory = 0;
 let operation = "";
 let dot = 0;  // значение младшего разряда (десятые, сотые, тысячные)
+	
+str_city = "Haifa"
+numbers = [1, 2, 3, 5, 7, 11]
+
+	
 </script>
 
 <table>
@@ -82,19 +87,15 @@ else
   "" + document.getElementById("display").value + num
 }
 }
-</script>
 
-<script>
-    //This script makes . and move us to digits after it
-    function Dot() {  
-      dot = 1
-      document.getElementById("demo").innerHTML = on_screen;
-      document.getElementById("display").value = 
-      "" + document.getElementById("display").value + "."
-    }
-</script>
+//This script makes . and move us to digits after it
+function Dot() {  
+	dot = 1
+	document.getElementById("demo").innerHTML = on_screen;
+	document.getElementById("display").value = 
+	"" + document.getElementById("display").value + "."
+}
 
-<script>
 //This script moves us to the second operand.
 function Add() {
   in_memory = on_screen;
