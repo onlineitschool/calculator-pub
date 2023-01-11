@@ -1,0 +1,47 @@
+<html>
+<head>
+
+</head>
+
+<body>
+
+Messages:<br>
+<textarea id="ta_chat" style="height: 300px; width: 600px;"></textarea>
+
+<hr>
+
+
+Name: <br> <input type="text" id="input_name">
+<br />
+
+Message:
+<br />
+<textarea id="message"></textarea>
+<br />
+<button onclick="send_message()">Send Message</button>
+
+
+
+<script>
+
+function send_message() {
+    console.log("Send Message")
+
+    var name = document.getElementById("input_name").value
+    var message = document.getElementById("message").value
+
+    var all_msg = name + ": " + message
+
+    console.log(all_msg)
+
+    document.getElementById("ta_chat").value = document.getElementById("ta_chat").value + "\n" + all_msg
+
+}
+
+</script>
+
+
+</body>
+
+
+</html>
