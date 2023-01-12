@@ -1,0 +1,59 @@
+<html>
+    <meta charset="UTF-8">
+<head>
+
+</head>
+<style>
+    div {
+     border: 3px solid #fff; /* Белая рамка */   
+     text-align: right;
+     padding: 10px; /* Поля вокруг текста */
+     border-radius: 15px; /* Уголки */
+     width: 55%;
+}
+    .clearfix::after { 
+    content: '';
+    clear: both; 
+    display: block;
+}
+    .owner { background: #007E3E; text-align: right;    float: right; color: #fff}
+    .others { background: #b1b5af; text-align: left;    float: left}
+    
+   </style>
+<body>
+    <table width="100%" >
+        <tr height="80%">
+            <td>
+                <div class=owner>Так будут выводиться мои сообщения.</div> 
+                <p></p>
+                <div class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </div> 
+            </td>
+            <td>
+                <p>Сообщения других пользователей <br> (пока здесь).</p>
+                Name: <br> <input type="text" id="input_name">
+                <br>
+                Message:
+                <br>
+                <textarea id="message"></textarea>
+                <br />
+                <button onclick="send_message()">Send Message</button>
+            </td>
+        </tr>
+        <tr height="20%">
+            <td>
+                My message:
+                <br>
+                <textarea id="message"></textarea>
+                <br />
+                <button onclick="send_Alex_message()">Send Message</button>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    </table>
+   
+
+    <div class="clearfix"></div>
+</body>
+</html>
