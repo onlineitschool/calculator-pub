@@ -1,0 +1,46 @@
+<html>
+    <meta charset="UTF-8">
+    <head>
+    
+    </head> 
+
+    <style>
+        div 
+        { 
+         padding: 10px; /* Поля вокруг текста */
+         border: 3px solid #fff; /* Белая рамка */ 
+         width: 55%;
+         border-radius: 15px; /* Уголки */
+         background: #007E3E; 
+         text-align: right;    
+         float: right; 
+         color: #fff
+        }
+        
+    </style>
+    <body>
+        My message:
+        <br>
+        <textarea id="message"></textarea>
+        <br />
+        <button onclick="send_my_message()">Send Message</button>
+  
+    </body>
+
+    <script>
+        var my_message = null;
+        var here = newDiv = null;
+        function send_my_message()
+        {
+            /* Берем текст из окна ввода, обнуляем окно  */
+            var my_message = document.getElementById("message").value;
+            document.getElementById("message").value = null;
+            /* Создаем новый элемент с этим текстом  */
+            newDiv = document.createElement("div");
+            /* my_div = getElementById("here"); */
+            newDiv.innerHTML = my_message;
+            document.body.insertBefore(newDiv, here);
+
+        }
+    </script> 
+</html>
