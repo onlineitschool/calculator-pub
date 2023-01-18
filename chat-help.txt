@@ -1,0 +1,10 @@
+
+
+"https://chat.v1.prod.online-it-school.com/add"
+
+ var data = {
+            "name" : document.getElementById("input_name").value,
+            "msg" : document.getElementById("ta_msg").value
+        }
+        
+  
