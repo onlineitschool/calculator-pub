@@ -1,0 +1,58 @@
+
+<button onclick="start()">Start</button>
+
+<button>next page</button>
+
+<div id="div_chat">
+    <b>Alexey</b>: <span>msg</span>
+    <br>
+
+    <b>Alexey</b>: <span>msg</span>
+    <br>
+
+</div>
+
+
+<script>
+
+
+function start() {
+
+    var url = "https://chat.v1.prod.online-it-school.com/get_msgs_page/0/20"
+
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => build_chat(data));
+
+}
+
+function build_chat(data) {
+
+    for (var i = 0; i < data.length; i++) {
+
+        var msg = data[i]
+
+        console.log(msg)
+
+        var elm1 = document.createElement("b")
+        elm1.innerHTML = msg["username"] + ": "
+
+        document.getElementById("div_chat").appendChild(elm1)
+
+        var elm_span = document.createElement("span")
+        elm_span.innerHTML =  msg["message"]
+        document.getElementById("div_chat").appendChild(elm_span)
+
+        var elm2 = document.createElement("br")
+        document.getElementById("div_chat").appendChild(elm2)
+
+        
+        
+    }
+
+}
+
+
+
+
+</script>
