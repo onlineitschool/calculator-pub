@@ -1,0 +1,7 @@
+
+ msg_output
+
+
+var e = document.getElementById("msg_output");                          //number of pages from select object
+var value = e.value;
+var num_msgs = e.options[e.selectedIndex].text;
