@@ -6,21 +6,19 @@
 </head>
 <body>
     <! -- Это для тестирования -->
-    <p>Число сообщений:  <b id="report"></b></p>
+    <p>-Число сообщений:  <b id="report"></b></p>
     <! -- Это окно чата -->
     <div id="block">
         <p id="bottom"></p>   
     </div> 
-
+    <! -- Это поля ввода имени, а затем сообщения -->
     <table width="99.5%">
         <tr width="100%"> 
-            <! -- Это поле ввода имени -->
             <td width="10%">
                 <p id="my_mame_is">My name:</p>
                 <input id="input_name" value="Default name"></input>
                 <button id="button_name" onclick="send_my_name()">Send My Name</button>            
             </td>
-            <! -- Это поле ввода сообщения -->
             <td width="90%">
                 <p id="send_message">My message:</p>
                 <input id="my_message"></input>
