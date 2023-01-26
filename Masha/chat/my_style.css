@@ -21,9 +21,12 @@ h6 /* Стиль для сообщений других пользователе
         min-width: 10%;
         max-width: 80%;
         width: fit-content;
-        background: #b1b5af; text-align: left;    
-        margin-left: 10px; margin-right: auto; 
-        margin-top: 3px; margin-bottom: 3px;
+        background: #b1b5af;
+		text-align: left;    
+        margin-left: 10px; 
+		margin-right: auto; 
+        margin-top: 3px; 
+		margin-bottom: 3px;
      }
 div /* Стиль для чата */
         {
