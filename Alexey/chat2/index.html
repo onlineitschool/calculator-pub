@@ -42,12 +42,12 @@
             
             <!-- <button type="button" onclick="fetchData()">Load Messages By Page</button> -->
             
-            <!--<label>Message output:</label>
+            <label>Message output:</label>
              <select id="msg_output">
                 <option value="5">5</option>
                 <option value="10" selected=true>10</option>
                 <option value="15">15</option>
-              </select> -->
+              </select>
             <button type="button" onclick="prev_page()">Prev</button>
             <label id="page">page </label>
             <label id="slash">/</label>
@@ -66,6 +66,18 @@
     var total_msgs;
     document.getElementById("page").innerHTML = pg_count + 1;
     var num_msgs = 10;
+    
+    var select = document.getElementById("msg_output");
+
+    //event handler for select object
+    select.addEventListener("change", function() {
+        var pages_new = num_pages(total_msgs, event.target.value)
+        num_msgs = event.target.value
+        document.getElementById("page").innerHTML = 1;
+        document.getElementById("pages").innerHTML = pages_new;
+        pg_count = 0;
+        fetchData(pg_count);
+    });
     fetchData(pg_count);
     //var num_msgs = document.getElementById("msg_output").value;
 
@@ -107,7 +119,7 @@
 
         //num_msgs = document.getElementById("msg_output").value;                             //number of pages from select object
         
-        var url = `https://chat.v1.prod.online-it-school.com/get_msgs_page/${page}/10`;
+        var url = `https://chat.v1.prod.online-it-school.com/get_msgs_page/${page}/${num_msgs}`;
         //var url = `https://chat.v1.prod.online-it-school.com/get_msgs_page/${page}/${num_msgs}`;
             
         fetch(url)
@@ -163,12 +175,11 @@
             data: data,
             success: function(a, b){
                 //debugger
-                document.getElementById("btn_load").click()
+                //document.getElementById("btn_load").click()
+                alert("Success");
             }
           });
        // }
-
-   
     }
 </script>
 </body>
