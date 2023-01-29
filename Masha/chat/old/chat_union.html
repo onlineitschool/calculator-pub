@@ -1,0 +1,106 @@
+<html>
+    <meta charset="UTF-8">
+<head>
+    <script src="js/jquery360.js"></script>
+    <link rel="stylesheet" href='my_style.css'>
+</head>
+<body>
+    <! -- Это для тестирования -->
+    <button onclick="show_msg_on_server()">Показать число сообщений</button>
+    <p>Число сообщений:  <b id="report"></b></p>
+    <! -- Это окно чата -->
+    <div id="block">
+        <p id="bottom"></p>   
+    </div> 
+
+    <table width="99.5%">
+        <tr width="100%"> 
+            <td width="10%">
+                <p id="my_mame_is">Your name:</p>
+
+                <! -- Это поле ввода имени -->
+                <input id="input_name" value="Default name"></input>
+
+                <! -- Кнопка "Send My Name". Доступна вначале, 
+                вызывает send_name_get_msg() [Функция 7]. -->
+                <button id="b_send_name_get_msg()" onclick="send_name_get_msg()">Send My Name</button> 
+
+            </td>         
+            <td width="90%">
+                <p id="send_message">Your message:</p>
+
+                <! -- Это поле ввода сообщения -->
+                <input id="my_message"></input>
+                <br>
+
+                <! -- Кнопка "Send My Message". Доступна после ввода имени, 
+                считывает мое сообщение и вызывает send_get_msg(). -->                
+                <button id="b_send_get_msg()" onclick="send_get_msg()">Send My Message</button> 
+            </td>        
+        </tr> 
+    </table>       
+</body>
+<script>
+
+    var last_message; 
+    fetch("https://chat.v1.prod.online-it-school.com/get_latest_msg_id")
+        .then((response) => response.json())
+        .then((data) => last_message=data);
+
+    // Для отладки
+    function show_msg_on_server()
+    {
+        //msg_on_server();
+        document.getElementById("report").innerHTML = last_message;
+    };
+
+    var msg_dowloaded = 0;
+    var name = null;
+
+    // Прячем отправку сообщений.
+    $(document.getElementById("send_message")).hide();
+    $(document.getElementById("my_message")).hide();
+    $(document.getElementById("b_send_get_msg()")).hide();
+
+    // Пользователь отправляет свое имя.
+    function send_name_get_msg()
+    {    
+        // Имя сохраняется в переменную name и выводится на экран.
+        name = document.getElementById("input_name").value;
+        document.getElementById("my_mame_is").innerHTML=name + ":";
+
+        // Прячем окно ввода имени и кнопку.
+        $(document.getElementById("input_name")).hide();
+        $(document.getElementById("b_send_name_get_msg()")).hide();
+
+        // Открываем отправку сообщений.          
+        $(document.getElementById("send_message")).show();
+        $(document.getElementById("my_message")).show();       
+        $(document.getElementById("b_send_get_msg()")).show(); 
+
+        // Загружаем все старые сообщения.  
+        download_msg();
+
+        // Раз в 2 секунды подгружаем новые сообщения.
+        updateMessages();
+    };
+
+    // Пользователь отправляет сообщение
+    function send_get_msg()
+    {
+        // Отправляем сообщение на сервер.
+        send_msg();
+
+        // Загружаем все новые сообщения, включая отправленное.    
+        download_msg();
+
+        // Обнуляем окно ввода сообщения.
+        document.getElementById("my_message").value = null;       
+    };
+
+
+
+
+</script>
+
+</html>

@@ -1,7 +1,7 @@
 <html>
     <meta charset="UTF-8">
 <head>
-    <script src="jquery360.js"></script>
+    <script src="js/jquery360.js"></script>
     <link rel="stylesheet" href='my_style.css'>
 </head>
 <body>
@@ -14,79 +14,106 @@
 
     <table width="99.5%">
         <tr width="100%"> 
-            <! -- Это поле ввода имени -->
             <td width="10%">
-                <p id="my_mame_is">My name:</p>
-                <input id="input_name" value="Default name"></input>
-                <button id="button_name" onclick="send_my_name()">Send My Name</button>            
-            </td>
-            <! -- Это поле ввода сообщения -->
+                <p id="my_mame_is">Your name:</p>
+
+                <! -- Это поле ввода имени -->
+                <input id="input_name" value="Default name" onclick="empty()"></input>
+
+                <! -- Кнопка "Send My Name". Доступна вначале, 
+                вызывает send_name_get_msg() [Функция 7]. -->
+                <button id="b_send_name_get_msg()" onclick="send_name_get_msg()">Send My Name</button> 
+
+            </td>         
             <td width="90%">
-                <p id="send_message">My message:</p>
+                <p id="send_message">Your message:</p>
+
+                <! -- Это поле ввода сообщения -->
                 <input id="my_message"></input>
                 <br>
-                <button id="button_message" onclick="send_my_message()">Send Message</button> 
+
+                <! -- Кнопка "Send My Message". Доступна после ввода имени, 
+                считывает мое сообщение и вызывает send_get_msg(). -->                
+                <button id="b_send_get_msg()" onclick="send_msg()">Send My Message</button> 
             </td>        
         </tr> 
     </table>       
 </body>
 <script>
-    var my_message = null;
-    var his_message = null;
-    var here = null;
-    var myMessage;
-    var hisMessage;
-    var name;
-    var last_message = 0;
+
+    var name = null; // Имя пользователя, по нашим данным.
+
+    var last_message = 0; // Количество сообщений на сервере, по нашим данным.
+    var msg_dowloaded = 0; // Количество загруженных с сервера сообщений.
 
     // Прячем отправку сообщений.
     $(document.getElementById("send_message")).hide();
     $(document.getElementById("my_message")).hide();
-    $(document.getElementById("button_message")).hide();
+    $(document.getElementById("b_send_get_msg()")).hide();
 
-    window.onload = function() {
-        console.log("window.onload")
-        // Выясняем номер последнего сообщения
-        $.ajax
-        ({
-            url: "https://chat.v1.prod.online-it-school.com/get_latest_msg_id",
-            success: function(x)
-                {
-                    document.getElementById("report").innerHTML = x;
-                    last_message = x;
-                },
-        });
+    // Убираем надпись Default name - надо написать
+    function empty()
+    {
+        // Обнуляем окно ввода имени.
+        document.getElementById("input_name").value = null;
     }
 
     // Пользователь отправляет свое имя.
-    function send_my_name()
-        {
-            // Имя сохраняется и выводится на экран.
-            name = document.getElementById("input_name").value;
-            document.getElementById("my_mame_is").innerHTML=name + ":";
-            // Прячем окно ввода имени и кнопку.
-            $(document.getElementById("input_name")).hide();
-            $(document.getElementById("button_name")).hide();
-            // Открываем отправку сообщений.          
-            $(document.getElementById("send_message")).show();
-            $(document.getElementById("my_message")).show();       
-            $(document.getElementById("button_message")).show();
-            // Отображаем серыми все старые сообщения чата.
-            get_msg();
-        };
+    function send_name_get_msg()
+    {    
+        // Имя сохраняется в переменную name и выводится на экран.
+        name = document.getElementById("input_name").value;
+        document.getElementById("my_mame_is").innerHTML = name + ":";
 
-    // Получаем от API все старые сообщения.
-    function get_msg() 
-        {
-            var url = "https://chat.v1.prod.online-it-school.com/get_msgs_page/0/" + last_message;
-            fetch(url)
+        // Прячем окно ввода имени и кнопку.
+        $(document.getElementById("input_name")).hide();
+        $(document.getElementById("b_send_name_get_msg()")).hide();
+
+        // Открываем отправку сообщений.          
+        $(document.getElementById("send_message")).show();
+        $(document.getElementById("my_message")).show();       
+        $(document.getElementById("b_send_get_msg()")).show(); 
+
+        // Раз в 0,5 секунды подгружаем новые сообщения.
+        updateMessages();
+    };
+
+    function updateMessages()
+        // Эта функция отслеживает появление новых сообщений
+    { 
+        let timerId = setInterval
+        (
+            function() 
+            { 
+                fetch("https://chat.v1.prod.online-it-school.com/get_latest_msg_id")
+                    .then((response) => response.json())
+                    .then((data) => get_msg(data));
+            }
+            , 500
+        ); 
+    };
+
+    // Выводим новое количество сообщений и считываем эти сообщения с сайта.
+    function get_msg(data)
+    {
+        last_message = data;
+        if (last_message != msg_dowloaded)
+            {
+                document.getElementById("report").innerHTML = last_message;
+                var d = last_message - msg_dowloaded;
+msg_dowloaded = last_message; 
+                var url = "https://chat.v1.prod.online-it-school.com/get_msgs_page/0/" + d;
+                fetch(url)
                 .then((response) => response.json())    
                 .then((data) => build_chat(data));
-        };
+            }           
+    };
 
-    // Пишем все старые сообщения в окно чата
+    // Пишем все новые сообщения в окно чата
     function build_chat(data) 
         {
+            var myMessage;
+            var hisMessage;
             for (var i = 0; i < data.length; i++) 
             {
                 var k = data.length - i - 1;
@@ -115,22 +142,12 @@
             }
         };
 
-
     // Пользователь отправляет свое сообщение.
-    function send_my_message()
+    function send_msg()
         {
-            // Выводим сообщение пользователя на зеленом фоне.
-            my_message = document.getElementById("my_message").value;
-            
-            myMessage = document.createElement("h5");
-            myMessage.innerHTML = name + ": " + my_message;
-
-            document.getElementById("block").appendChild(myMessage);
-            document.getElementById("block").scrollTop = block.scrollHeight;
-
             // Отправляем сообщение на сервер.
             console.log("Send Message")
-
+            var my_message = document.getElementById("my_message").value;
                 var data = {
                     "name" : name,
                     "msg" : my_message
@@ -142,7 +159,6 @@
                     data: data,
                     success: function(a, b){
                         console.log(a)
-                        get_all_msg()
                     },
                     error: function(a, b) {
                         console.log("error")
@@ -151,6 +167,5 @@
             // Обнуляем окно ввода сообщения.
             document.getElementById("my_message").value = null;
         }
-
-    </script>
+</script>
 </html>

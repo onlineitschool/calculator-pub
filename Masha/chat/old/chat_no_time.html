@@ -1,13 +1,12 @@
 <html>
     <meta charset="UTF-8">
 <head>
-    <script src="jquery360.js"></script>
+    <script src="js/jquery360.js"></script>
     <link rel="stylesheet" href='my_style.css'>
 </head>
 <body>
     <! -- Это для тестирования -->
     <p>Число сообщений:  <b id="report"></b></p>
-    <button onclick="updateMessages()">updateMessages()</button>
     <! -- Это окно чата -->
     <div id="block">
         <p id="bottom"></p>   
@@ -42,17 +41,12 @@
 
     // Прячем отправку сообщений.
     $(document.getElementById("send_message")).hide();
-    $(document.getElementById("my_message")).hide();       
+    $(document.getElementById("my_message")).hide();
     $(document.getElementById("button_message")).hide();
 
     window.onload = function() {
         console.log("window.onload")
-        lastMessage()
-    }
-
-    // Выясняем номер последнего сообщения
-    function lastMessage()
-    {
+        // Выясняем номер последнего сообщения
         $.ajax
         ({
             url: "https://chat.v1.prod.online-it-school.com/get_latest_msg_id",
@@ -62,7 +56,7 @@
                     last_message = x;
                 },
         });
-    }   
+    }
 
     // Пользователь отправляет свое имя.
     function send_my_name()
@@ -148,7 +142,6 @@
                     data: data,
                     success: function(a, b){
                         console.log(a)
-                        get_all_msg()
                     },
                     error: function(a, b) {
                         console.log("error")
@@ -156,80 +149,7 @@
                 });
             // Обнуляем окно ввода сообщения.
             document.getElementById("my_message").value = null;
-        };
-
-        // Эта функция тут для пробы, она считает с задержкой секунда
-        function printNumbers(from, to) 
-        {
-            let current = from;
-            let timerId = setInterval
-            (
-                function() 
-                {
-                    alert(current);
-                    if (current == to) 
-                    {
-                        clearInterval(timerId);
-                    }
-                    current++;
-                }
-                , 1000
-            );  
         }
 
-        // Эта функция будет смотреть сообщения каждые две секунды
-        function checkMessages()
-        {
-            let current = from;
-            let timerId = setInterval
-            (
-                function()
-                {
-                    updateMessages(); 
-                    if (current == to) 
-                    {
-                        clearInterval(timerId);
-                    }
-                    current++;
-                }
-                , 2000
-            );
-        };
-
-        // Эта функция будет загружать новые сообщения в окно чата серым цветом.
-        function updateMessages()
-        {
-            var saved_message = last_message;
-            lastMessage();
-            if (saved_message < last_message)
-            {
-                var d = last_message - saved_message;
-                var url = "https://chat.v1.prod.online-it-school.com/get_msgs_page/0/" + d;
-            fetch(url)
-                .then((response) => response.json())    
-                .then((data) => update_chat(data));
-            }
-        }
-
-        function update_chat(data) 
-        {
-            for (var i = 0; i < data.length; i++) 
-            {
-                var k = data.length - i - 1;
-                var msg = data[k];
-
-                console.log(name);
-
-                if (msg["username"] != name) 
-                {
-                    // Выводим сообщения других пользователей на сером фоне. 
-                    hisMessage = document.createElement("h6");
-                    hisMessage.innerHTML = msg["username"] + ": " + msg["message"];
-
-                    document.getElementById("block").appendChild(hisMessage);
-                    document.getElementById("block").scrollTop = block.scrollHeight;   
-                }
-            }
-        };
     </script>
 </html>
