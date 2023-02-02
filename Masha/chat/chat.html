@@ -21,7 +21,7 @@
                 <input id="input_name" value="Default name" onclick="empty()"></input>
 
                 <! -- Кнопка "Send My Name". Доступна вначале, 
-                вызывает send_name_get_msg() [Функция 7]. -->
+                вызывает send_name_get_msg(). -->
                 <button id="b_send_name_get_msg()" onclick="send_name_get_msg()">Send My Name</button> 
 
             </td>         
@@ -101,7 +101,7 @@
             {
                 document.getElementById("report").innerHTML = last_message;
                 var d = last_message - msg_dowloaded;
-msg_dowloaded = last_message; 
+                msg_dowloaded = last_message; 
                 var url = "https://chat.v1.prod.online-it-school.com/get_msgs_page/0/" + d;
                 fetch(url)
                 .then((response) => response.json())    
