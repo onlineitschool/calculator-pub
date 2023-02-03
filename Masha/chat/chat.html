@@ -22,7 +22,7 @@
 
                 <! -- Кнопка "Send My Name". Доступна вначале, 
                 вызывает send_name_get_msg(). -->
-                <button id="b_send_name_get_msg()" onclick="send_name_get_msg()">Send My Name</button> 
+                <button id="b_send_name_get_msg" onclick="send_name_get_msg()">Send My Name</button> 
 
             </td>         
             <td width="90%">
@@ -34,7 +34,7 @@
 
                 <! -- Кнопка "Send My Message". Доступна после ввода имени, 
                 считывает мое сообщение и вызывает send_get_msg(). -->                
-                <button id="b_send_get_msg()" onclick="send_msg()">Send My Message</button> 
+                <button id="b_send_get_msg" onclick="send_msg()">Send My Message</button> 
             </td>        
         </tr> 
     </table>       
@@ -47,11 +47,11 @@
     var msg_dowloaded = 0; // Количество загруженных с сервера сообщений.
 
     // Прячем отправку сообщений.
-    $(document.getElementById("send_message")).hide();
-    $(document.getElementById("my_message")).hide();
-    $(document.getElementById("b_send_get_msg()")).hide();
+    $("#send_message").hide();
+    $("#my_message").hide();
+    $("#b_send_get_msg").hide();
 
-    // Убираем надпись Default name - надо написать
+    // Убираем надпись Default name
     function empty()
     {
         // Обнуляем окно ввода имени.
@@ -66,13 +66,13 @@
         document.getElementById("my_mame_is").innerHTML = name + ":";
 
         // Прячем окно ввода имени и кнопку.
-        $(document.getElementById("input_name")).hide();
-        $(document.getElementById("b_send_name_get_msg()")).hide();
+        $("#input_name").hide();
+        $("#b_send_name_get_msg").hide();
 
         // Открываем отправку сообщений.          
-        $(document.getElementById("send_message")).show();
-        $(document.getElementById("my_message")).show();       
-        $(document.getElementById("b_send_get_msg()")).show(); 
+        $("#end_message").show();
+        $("#my_message").show();       
+        $("#b_send_get_msg").show();
 
         // Раз в 0,5 секунды подгружаем новые сообщения.
         updateMessages();
