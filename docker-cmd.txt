@@ -1,0 +1,33 @@
+#get latest changes from remote repo
+git pull
+
+
+git add --all
+git commit -m "my comment"
+git push
+
+
+docker images
+
+docker pull nginx:1.23.4
+docker pull nginx:1.24.0
+docker pull nginx:latest
+
+
+
+docker run -d --name cnt-nginx -p 9000:80 nginx:1.23.4
+-d detached
+
+-p 9000:80 
+
+# list running containers
+docker ps 
+
+localhost:9000
+
+## 
+docker run -d --name cnt-nginx2 -p 9001:80 -v /Users/olganarayana/Desktop/Projects/Hello/calculator-pub/Olga/calculator:/usr/share/nginx/html  nginx:1.23.4
+
+
+
+docker run -d --name cnt-nginx3 -p 9003:80 -v /Users/olganarayana/Desktop/Projects/Hello/calculator-pub/Masha/calculator/:/usr/share/nginx/html  nginx:1.23.4
