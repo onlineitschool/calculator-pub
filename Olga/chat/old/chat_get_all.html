@@ -1,0 +1,87 @@
+<html>
+    <meta charset="UTF-8">
+<head>
+    <script src="jquery360.js"></script>
+</head>
+<style>
+    div /* Стиль для чата */
+        {
+            border: 1px solid #999;
+            height: 80%;
+            overflow: auto;
+            width: 99%;
+            align: center;
+        }
+    input /* Стиль окон ввода */ 
+        {
+        padding: 10px;
+        border: 1px solid #999;
+        font-size: 16px;
+        min-width: 100%;
+        }
+   </style>
+<body>
+    <div id="block">
+        <p id="bottom"></p>   
+    </div> 
+    <table width="99.5%">
+        <tr width="100%"> 
+            <td width="10%">
+                <p id="my_mame_is">My name:</p>
+                <input id="input_name" value="Default name"></input>
+                <button id="button_name" onclick="send_my_name()">Send My Name</button>            
+            </td>
+            <td width="90%">
+                <p id="send_message">My message:</p>
+                <input id="my_message"></textarea>
+                <br>
+                <button id="button_message" onclick="send_my_message()">Send Message</button> 
+            </td>        
+        </tr> 
+    </table>       
+</body>
+<script>
+    var block = document.getElementById("block");
+    var my_message = null;
+    var his_message = null;
+    var here = null;
+
+    // Прячем отправку сообщений.
+    $(document.getElementById("send_message")).hide();
+    $(document.getElementById("my_message")).hide();       
+    $(document.getElementById("button_message")).hide();
+
+    // Пользователь отправляет свое имя.
+    function send_my_name()
+        {
+            // Имя сохраняется и выводится на экран.
+            var element = document.getElementById("input_name")
+            var name = element.value;
+            document.getElementById("my_mame_is").innerHTML=name + ":";
+            // Прячем окно ввода имени и кнопку.
+            $(element).hide();
+            $(document.getElementById("button_name")).hide();
+            // Открываем отправку сообщений.          
+            $(document.getElementById("send_message")).show();
+            $(document.getElementById("my_message")).show();       
+            $(document.getElementById("button_message")).show();
+            // Загружаем все текущие сообщения чата.
+            get_all_msg()
+        }
+
+    function get_all_msg() 
+    {
+        $.ajax(
+        {
+            url: "https://chat.v1.prod.online-it-school.com/get_all_messages_html1",
+            success: function(x, y)
+                {
+                    console.log(x)
+                    //$(block).html(x)
+                    block.innerHTML = x
+                },
+    
+        });
+    }          
+</script>
+</html>

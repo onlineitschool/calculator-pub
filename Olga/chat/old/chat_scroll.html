@@ -1,0 +1,94 @@
+<html>
+    <meta charset="UTF-8">
+<head>
+
+</head>
+<style>
+    p /* Стиль для сообщений */
+    {
+       
+     text-align: right;
+     padding: 10px; /* Поля вокруг текста */
+     border-radius: 15px; /* Уголки */
+     width: 75%;
+     min-height: 20px;
+    }
+    .owner /* Стиль для моих сообщений */
+        { 
+            background: #007E3E; text-align: right; color: #fff; 
+            margin-left: auto; margin-right: 0em;
+        }
+    .others /* Стиль для сообщений других пользователей */
+        {   
+            background: #b1b5af; text-align: left;    
+            margin-right: auto; margin-left: 0em;
+        }
+    textarea 
+        {
+        width:  90%;
+        padding: 10px;
+        border:1px solid #999;
+        font-size:16px;
+        height: 20%;
+        }
+    div /* Стиль для чата */
+        {
+            border:1px solid #999;
+            height: 500px;
+            overflow: auto;
+            width: 95%;
+        }
+   </style>
+<body>
+<div id="block">
+    
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+    <p class=owner>Так будут выводиться мои сообщения.</p> 
+    <p class=others><b>Mike:</b> Так будут выводиться сообщения других пользователей. </p> 
+</div>
+<table width="100%">
+    <tr valign="top">
+        <td width = "50%">
+            My message:
+            <br>
+            <textarea  minwidh="50%" id="message"></textarea>
+            <br>
+            <button onclick="send_Alex_message()">Send Message</button>
+        </td>
+        <td width = "50%">
+            Other messages (пока здесь).
+                <br>Name: 
+                <br> <input type="text" id="input_name">
+                <br>Message:
+                <br><textarea minwidh="50%" id="message"></textarea>
+                <br><button onclick="send_message()">Send Message</button>
+            </td>
+        </tr>
+    </table>
+</body>
+<script type="text/javascript">
+    var block = document.getElementById("block");
+    block.scrollTop = block.scrollHeight;
+</script>
+</html>
