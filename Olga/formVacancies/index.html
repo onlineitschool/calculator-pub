@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form for uploading vacancies</title>
+
+</head>
+
+<body>
+    <h1>Form for uploading vacancies</h1>
+
+    <form>
+
+        <fieldset>
+
+            <legend>Job advertisement</legend>
+
+            <label for="publication_date">Publication date</label>
+            <input type="date" id="publication_date" name="publication_date" required><br>
+
+            <label for="ad_reference">Reference to the ad</label>
+            <input type="text" id="ad_reference" name="ad_reference" required><br>
+
+            <label for="platform">Platform that posted the ad</label>
+            <input type="text" id="platform" name="platform" required><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Company</legend>
+
+            <label for="company_name">Company name</label>
+            <input type="text" id="company_name" name="company_name" required><br>
+
+            <label for="contact_person">Person to contact</label>
+            <input type="text" id="contact_person" name="contact_person" required><br>
+
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required><br>
+
+            <label for="email">e-mail</label>
+            <input type="email" id="email" name="email" required><br>
+
+        </fieldset>
+
+
+
+        <label for="operator">Operator entered the information</label>
+        <input type="text" id="operator" name="operator" required><br>
+
+        <fieldset>
+            <legend>Vacancy</legend>
+            <label for="occupation">Occupation</label>
+            <input type="text" id="occupation" name="occupation" required><br>
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required><br>
+
+            <label for="keywords">Keywords</label>
+            <input type="text" id="keywords" name="keywords" required><br>
+
+            <label for="ad_text">Text of the ad</label>
+            <textarea id="ad_text" name="ad_text" rows="5" required></textarea><br>
+        </fieldset>
+
+
+        <input type="button" value="Add Data">
+    </form>
+</body>
+
+</html>
