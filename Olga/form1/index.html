@@ -1,77 +1,75 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Add New Vacancy</title>
-    <style>
-        body {
-            background-color: skyblue;
-        }
+  <title>Add New Vacancy</title>
+  <style>
+    body {
+      background-color: skyblue;
+    }
 
-        .form-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-        .form-row label {
-            flex-basis: 150px;
-            margin-right: 10px;
-            text-align: right;
-        }
+    .form-row label {
+      flex-basis: 150px;
+      margin-right: 10px;
+      text-align: right;
+    }
 
-        .form-row input {
-            flex: 1;
-        }
+    .form-row input {
+      flex: 1;
+    }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-    </style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Add New Vacancy</h1>
+  <div class="container">
+    <h1>Add New Vacancy</h1>
+    
+    <form action="http://13.41.56.198:8000/job/add" method="post">
+        
+      <div class="form-row">
+        <label for="job_title">Job Title:</label>
+        <input type="text" id="job_title" name="job_title" required>
+      </div>
 
-        <form method="post" action="save_vacancy.php">
-            <div class="form-row">
-                <label for="job_title">Job Title:</label>
-                <input type="text" id="job_title" name="job_title" required>
-            </div>
+      <div class="form-row">
+        <label for="employer_name">Employer Name:</label>
+        <input type="text" id="employer_name" name="employer_name" required>
+      </div>
 
-            <div class="form-row">
-                <label for="employer_name">Employer Name:</label>
-                <input type="text" id="employer_name" name="employer_name" required>
-            </div>
+      <div class="form-row">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+      </div>
 
-            <div class="form-row">
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city" required>
-            </div>
+      <div class="form-row">
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" id="phone_number" name="phone_number" required>
+      </div>
 
-            <div class="form-row">
-                <label for="phone_number">Phone Number:</label>
-                <input type="tel" id="phone_number" name="phone_number" required>
-            </div>
+      <div class="form-row">
+        <label for="announcement_date">Announcement Date:</label>
+        <input type="date" id="announcement_date" name="announcement_date" required>
+      </div>
 
-            <div class="form-row">
-                <label for="announcement_date">Announcement Date:</label>
-                <input type="date" id="announcement_date" name="announcement_date" required>
-            </div>
+      <div class="form-row">
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website" required>
+      </div>
 
-            <div class="form-row">
-                <label for="website">Website:</label>
-                <input type="url" id="website" name="website" required>
-            </div>
-
-            <div class="form-row">
-                <input type="submit" value="Send">
-            </div>
-        </form>
-    </div>
+      <div class="form-row">
+        <input type="submit" value="Send">
+      </div>
+    </form>
+  </div>
 </body>
-
 </html>

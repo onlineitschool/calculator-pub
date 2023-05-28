@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Светофор</title>
+  <style>
+    .light-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .light {
+      width: 100px;
+      height: 100px;
+      border-radius: 90%;
+      margin-bottom: 10px;
+    }
+    .red {
+      background-color: red;
+    }
+    .yellow {
+      background-color: yellow;
+    }
+    .green {
+      background-color: green;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+    }
+    .button {
+      width: 50px;
+      height: 50px;
+      margin: 0 10px;
+    }
+    .status {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="light-container">
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light green"></div>
+  </div>
+  
+  <div class="button-container">
+    <div class="button red"></div>
+    <div class="button yellow"></div>
+    <div class="button green"></div>
+  </div>
+  
+  <div class="status">
+    Сейчас горит .......
+  </div>
+  
+  <script>
+    var redLight = document.querySelector('.red');
+    var yellowLight = document.querySelector('.yellow');
+    var greenLight = document.querySelector('.green');
+  
+    var redButton = document.querySelector('.button.red');
+    var yellowButton = document.querySelector('.button.yellow');
+    var greenButton = document.querySelector('.button.green');
+  
+    var statusText = document.querySelector('.status');
+  
+    redButton.addEventListener('click', function() {
+      redLight.style.opacity = 1;
+      yellowLight.style.opacity = 0.2;
+      greenLight.style.opacity = 0.2;
+      statusText.textContent = "Сейчас горит красный свет";
+    });
+  
+    yellowButton.addEventListener('click', function() {
+      redLight.style.opacity = 0.2;
+      yellowLight.style.opacity = 1;
+      greenLight.style.opacity = 0.2;
+      statusText.textContent = "Сейчас горит желтый свет";
+    });
+  
+    greenButton.addEventListener('click', function() {
+      redLight.style.opacity = 0.2;
+      yellowLight.style.opacity = 0.2;
+      greenLight.style.opacity = 1;
+      statusText.textContent = "Сейчас горит зеленый свет";
+    });
+  </script>
+</body>
+</html>

@@ -42,13 +42,15 @@
                 <tr style="vertical-align: top;">
                     <td>
                         <fieldset>
+                            <legend>Job advertisement</legend>
+
                             <table>
                                 <tr>
                                     <td>
                                         <label for="publication_date">Publication date</label>
                                     </td>
                                     <td>
-                                        <input type="date" id="publication_date" name="publication_date" required><br>
+                                        <input type="date" id="publication_date" name="publication_date" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -56,7 +58,7 @@
                                         <label for="ad_reference">Reference to the ad</label>
                                     </td>
                                     <td>
-                                        <input type="text" id="ad_reference" name="ad_reference" required><br>
+                                        <input type="text" id="ad_reference" name="ad_reference" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -64,29 +66,37 @@
                                         <label for="platform">Platform that posted the ad</label>
                                     </td>
                                     <td>
-                                        <input type="text" id="platform" name="platform" required><br>
+                                        <input type="text" id="platform" name="platform" required>
                                     </td>
                                 </tr>
                             </table>
-                            <legend>Job advertisement</legend>
-
-                            
                         </fieldset>
 
                         <fieldset>
                             <legend>Company</legend>
 
-                            <label for="company_name">Company name</label>
-                            <input type="text" id="company_name" name="company_name" required><br>
+                            <table>
+                                <tr>
+                                    <td><label for="company_name">Company name</label></td>
+                                    <td><input type="text" id="company_name" name="company_name" required></td>
+                                </tr>
 
-                            <label for="contact_person">Person to contact</label>
-                            <input type="text" id="contact_person" name="contact_person" required><br>
+                                <tr>
+                                    <td><label for="contact_person">Person to contact</label></td>
+                                    <td><input type="text" id="contact_person" name="contact_person" required></td>
+                                </tr>
 
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" required><br>
+                                <tr>
+                                    <td><label for="phone">Phone</label></td>
+                                    <td><input type="tel" id="phone" name="phone" required></td>
+                                </tr>
 
-                            <label for="email">e-mail</label>
-                            <input type="email" id="email" name="email" required><br>
+                                <tr>
+                                    <td><label for="email">e-mail</label></td>
+                                    <td><input type="email" id="email" name="email" required></td>
+                                </tr>
+
+                            </table>
 
                         </fieldset>
 
@@ -96,17 +106,25 @@
 
                         <fieldset>
                             <legend>Vacancy</legend>
-                            <label for="occupation">Occupation</label>
-                            <input type="text" id="occupation" name="occupation" required><br>
-
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" required><br>
-
-                            <label for="keywords">Keywords</label>
-                            <input type="text" id="keywords" name="keywords"><br>
-
-                            <label for="ad_text">Text of the ad</label>
-                            <textarea id="ad_text" name="ad_text" rows="5"></textarea><br>
+                            <table>
+                                <tr>
+                                    <td><label for="occupation">Occupation</label></td>
+                                    <td> <input type="text" id="occupation" name="occupation" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="city">City</label></td>
+                                    <td><input type="text" id="city" name="city" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="keywords">Keywords</label></td>
+                                    <td><input type="text" id="keywords" name="keywords"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="ad_text">Text of the ad</label></td>
+                                    <td><textarea id="ad_text" name="ad_text" rows="5"></textarea></td>
+                                </tr>
+                            </table>
                         </fieldset>
                         <label for="operator">Operator entered the information</label>
                         <input type="text" id="operator" name="operator" required><br>
